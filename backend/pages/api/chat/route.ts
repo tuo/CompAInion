@@ -15,7 +15,10 @@ export const config = {
 
 export default async function POST(req: Request) {
   const headers = req.headers;
-  const { messages } = await req.json();
+  const reqJson = await req.json();
+  console.log("===reqJson", reqJson);
+  const messages = reqJson?.messages;
+
 
   if (headers.get("Authorization") !== password) {
     console.log("Authorized header is not matching the password.");
