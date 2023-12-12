@@ -13,27 +13,8 @@ export const config = {
   runtime: "edge",
 };
 
-export default async function handleRequest(req: Request) {
-  switch (req.method) {
-    case 'POST':
-      return POST(req);
-    case 'OPTIONS':
-      return handleOptions(req);
-    default:
-      return new Response(null, { status: 405 });
-  }
-}
 
-async function handleOptions(req: Request) {
-  const headers = new Headers();
-  headers.append('Access-Control-Allow-Origin', '*');
-  headers.append('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  headers.append('Access-Control-Allow-Headers', 'Content-Type');
-  return new Response(null, { headers });
-}
-
-
-async function POST(req: Request) {
+export default async function POST(req: Request) {
   const headers = req.headers;
   const reqJson = await req.json();
   console.log("===reqJson", reqJson);
